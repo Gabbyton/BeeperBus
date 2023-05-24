@@ -15,6 +15,10 @@ This repository contains the latest version of our client and server. The client
 5. We use TDD. Always write tests for your code.
 6. Do not force update!
 
+## Package Manager
+
+We use npm for both TS and JS.
+
 ## Style Guide
 
 ### Javascript
