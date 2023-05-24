@@ -1,0 +1,29 @@
+.ui-overlay {
+    pointer-events: none;
+}
+
+.overlay {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+}
+
+.page-overlay {
+    position: absolute;
+    background-color: white;
+    overflow-y: scroll;
+}
+
+.user-overlay {
+    z-index: 3;
+}
+
+.line-overlay {
+    z-index: 2;
+}
+
+.pill {
+    border-radius: 2em;
+    height: fit-content;
+}

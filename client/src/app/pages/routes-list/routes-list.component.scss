@@ -1,0 +1,35 @@
+.circle {
+    height: 10px;
+    width: 10px;
+    background-color: #F47F20;
+    border-radius: 100%;
+}
+
+.line {
+    width: 1px;
+    background-color: #F47F20;
+    transform: translateX(-5px);
+}
+
+.secondary-light {
+    color: #F6944D;
+}
+
+.toggle-button {
+    padding: 0.2em;
+    aspect-ratio: 1;
+    background-color: white;
+    border-radius: 0.5em;
+}
+
+.bottom-bar {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    right: 0;
+}
+
+.card-style, .card-style>div {
+    background-color: white;
+    border: 0;
+}

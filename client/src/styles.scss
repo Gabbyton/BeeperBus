@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+// set the variables you wish to change
+$primary: #F47F20;
+$secondary: #CE5127;
+// import in the bootstrap SASS file
+@import '../node_modules/bootstrap/scss/bootstrap'

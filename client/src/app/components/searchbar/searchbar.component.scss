@@ -1,0 +1,13 @@
+.searchbar {
+    pointer-events: all;
+}
+
+.searchbar>.form-control {
+    border-color: #F47F20;
+    border-left: hidden;
+}
+
+.searchbar>div>.btn {
+    border-right: hidden;
+    background-color: white;
+}
