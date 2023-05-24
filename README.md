@@ -5,3 +5,26 @@ BeeperBus is a school project founded on the belief that everyone deserves a bet
 ## Getting Started
 
 This repository contains the latest version of our client and server. The client was written in Typescript while the server is currently in JavaScript.
+
+## Repo Norms
+
+1. There is only one branch `master`.
+2. Commit often. Commit atomically.
+3. List all changes in commits. One sentence per change. The commit message is our changelog.
+4. All secrets are in .env files. Never add secrets to the repo!
+5. We use TDD. Always write tests for your code.
+6. Do not force update!
+
+## Style Guide
+
+### Javascript
+
+We enforce the standard Javascript style guide. You can find a reference [here](https://github.com/standard/standard).
+
+### TypeScript
+
+We enforce the Google style guide for writing code. A reference can be found [here](https://google.github.io/styleguide/tsguide.html).
+
+### Python
+
+We strive to write pythonic code in the PEP8 style guide whenever we can. A definitive guide can be found [here](https://peps.python.org/pep-0008/).
