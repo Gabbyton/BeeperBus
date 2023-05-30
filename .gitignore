@@ -128,3 +128,8 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Local settings and files
+.vscode/*
+*/.DS_Store
+server/.DS_Store
