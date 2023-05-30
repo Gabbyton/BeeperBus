@@ -132,4 +132,3 @@ dist
 # Local settings and files
 .vscode/*
 */.DS_Store
-server/.DS_Store
