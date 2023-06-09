@@ -8,7 +8,7 @@ This repository contains the latest version of our client and server. The client
 
 ## Repo Norms
 
-1. There is only one branch `master`.
+1. There is only one branch `main`.
 2. Commit often. Commit atomically.
 3. List all changes in commits. One sentence per change. The commit message is our changelog.
 4. All secrets are in .env files. Never add secrets to the repo!
