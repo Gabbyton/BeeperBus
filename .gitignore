@@ -1,3 +1,7 @@
+# Hidden files not tracked unless explicitely listed
+**/.*/**
+**/.*
+
 # Logs
 logs
 *.log
