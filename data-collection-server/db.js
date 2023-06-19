@@ -16,4 +16,17 @@ const sequelize = new Sequelize(
   }
 );
 
+// Create the database if it doesn't exist
+if (dbConfig.createDatabase) {
+  sequelize
+    .query(`CREATE DATABASE IF NOT EXISTS ${dbConfig.database};`)
+    .then(() => {
+      console.log("Database created or already exists");
+    })
+    .catch((err) => {
+      console.error("Error creating database:", err);
+      process.exit(1);
+    });
+}
+
 module.exports = sequelize;
