@@ -11,7 +11,7 @@ times.
 ## Getting Started
 
 This repository contains the latest version of our client and server. The client
-was written in Typescript while the server is currently in JavaScript.
+was written in TypeScript while the server is currently in JavaScript.
 
 ## Repo Norms
 
