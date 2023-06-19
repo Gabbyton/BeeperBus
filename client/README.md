@@ -1,7 +1,7 @@
 # CWRU Omnibus
 
 Angular web application for tracking shuttles for Case Western Reserve
-University 
+University.
 
 This project was generated with
 [Angular CLI](https://github.com/angular/angular-cli) version 11.0.7.
