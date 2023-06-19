@@ -136,3 +136,6 @@ dist
 # Local settings and files
 .vscode/*
 */.DS_Store
+
+# configuration files
+config.*
