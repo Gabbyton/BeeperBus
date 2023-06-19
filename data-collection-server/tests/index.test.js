@@ -1,4 +1,4 @@
-// test.js
+// index.test.js
 // TODO : document test
 // TODO : create more tests for proper error handling
 const chai = require("chai");
