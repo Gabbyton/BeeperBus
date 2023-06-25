@@ -11,7 +11,8 @@ This project was generated with
 To keep API keys secret during development, we've decided to replace the index
 file with a duplicate one with the key during every build. To be able to use
 this app in development, copy the `index.html` file and paste it as
-`index-dev.html` in the same `src` folder.
+`index-dev.html` in the same `src` folder. This `index-dev.html` setup will be
+phased out in the next update.
 
 **NOTE:** this project is *obviously* not set up for production yet. We will
 update the configuration for a production scenario in the future.
