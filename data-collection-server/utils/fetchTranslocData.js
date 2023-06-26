@@ -2,7 +2,7 @@
 
 const axios = require("axios");
 
-const config = require("./config");
+const config = require("./config"); // GitHub #2
 
 const env = process.env.NODE_ENV || "development";
 const apiConfig = config[env];
