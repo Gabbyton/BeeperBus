@@ -139,3 +139,4 @@ dist
 
 # configuration files
 data-collection-server/config.js
+data-collection-server/db/*
