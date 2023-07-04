@@ -11,8 +11,8 @@ const vehiclesRoute = require("./routes/vehicles");
 const arrivalsRoute = require("./routes/arrivals");
 
 // Define routes
-app.use("/vehicles", vehiclesRoute);
-app.use("/arrivals", arrivalsRoute);
+// app.use("/vehicles", vehiclesRoute);
+// app.use("/arrivals", arrivalsRoute);
 
 // Create the database and tables if they don't exist
 sequelize.sync({ force: false }).then(() => {
