@@ -1,24 +1,36 @@
 // index.test.js
-// TODO : document test
-// TODO : create more tests for proper error handling
 const chai = require("chai");
 const chaiHttp = require("chai-http");
 const { describe, it } = require("mocha");
 
+const db = require("../core/db");
+const app = require("../core/app");
+
 const expect = chai.expect;
 chai.use(chaiHttp);
 
-// Replace 'http://localhost:3000' with the actual server URL
-chai
-  .request("http://localhost:3000")
-  .get("/")
-  .end((err, res) => {
-    describe("Server", () => {
-      it("should have a successful status code", () => {
+describe("express server", function () {
+  it("runs", function (done) {
+    chai
+      .request(app)
+      .get("/")
+      .end((err, res) => {
         expect(res).to.have.status(200);
+        done();
       });
-    });
+  });
+});
+
+describe("database", function () {
+  it("connects to the database", function (done) {
+    db.authenticate()
+      .then(function () {
+        done();
+      })
+      .catch(function (err) {
+        console.error(err);
+      });
   });
 
-// Run the tests
-mocha.run();
+  it("creates a new vehicle entry", function (done) {});
+});
