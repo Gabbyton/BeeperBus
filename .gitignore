@@ -138,5 +138,7 @@ dist
 */.DS_Store
 
 # configuration files
-data-collection-server/config.js
-data-collection-server/db/*
+data-collection-server/secrets/*
+
+# hide sh files
+*.sh
