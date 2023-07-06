@@ -1,13 +1,6 @@
-// index.js
-
-const express = require("express");
-const app = express();
+const app = require("./core/app");
 const port = 3000;
 
-app.get("/", (req, res) => {
-  res.send("this is working!");
-});
-
-app.listen(port, () => {
-  console.log("this is working!");
+app.listen(port, function () {
+  console.log(`server listening at port ${port}...`);
 });
