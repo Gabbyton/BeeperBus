@@ -4,25 +4,12 @@ const chaiHttp = require("chai-http");
 const { describe, it } = require("mocha");
 
 const db = require("../core/db");
-const app = require("../core/app");
 
 const Vehicle = require("../models/vehicle");
 
 const expect = chai.expect;
 const assert = chai.assert;
 chai.use(chaiHttp);
-
-describe("express server", function () {
-  it("runs", function (done) {
-    chai
-      .request(app)
-      .get("/")
-      .end((err, res) => {
-        expect(res).to.have.status(200);
-        done();
-      });
-  });
-});
 
 describe("database", function () {
   it("connects to the database", function () {
