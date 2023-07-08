@@ -22,7 +22,7 @@ class Vehicle extends Model {
         vehicleEntries.push(vehicleEntry);
         
         if (doSave) {
-          vehicleEntry.save();
+          await vehicleEntry.save();
         }
       } catch (e) {
         hasBadEntries = true;
