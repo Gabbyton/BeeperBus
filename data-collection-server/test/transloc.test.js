@@ -5,9 +5,9 @@ const { describe, it } = require("mocha");
 const { getVehicles } = require("../core/transloc");
 
 const Vehicle = require("../models/vehicle");
+const { scheduleCollect } = require("../core/collect");
 
 const assert = chai.assert;
-
 chai.use(chaiHttp);
 
 describe("Transloc Open API", function () {
