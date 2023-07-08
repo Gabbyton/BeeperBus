@@ -3,7 +3,8 @@ const sequelize = require("../core/db");
 
 class Arrival extends Model {}
 
-Arrival.init( // TODO change this to match the expected data from arrivals
+Arrival.init(
+  // TODO change this to match the expected data from arrivals
   {
     callName: DataTypes.STRING,
     vehicleId: DataTypes.INTEGER,
