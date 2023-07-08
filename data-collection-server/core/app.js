@@ -4,7 +4,8 @@ const fs = require("fs");
 const express = require("express");
 const app = express();
 
-const errlogFilePath = path.join(__dirname, "app-error.log");
+const parentPath = path.resolve(__dirname, "..");
+const errlogFilePath = path.join(parentPath, "logs", "app-error.log");
 const errorLogStream = fs.createWriteStream(errlogFilePath, { flags: "a" });
 
 // Middleware for logging errors
