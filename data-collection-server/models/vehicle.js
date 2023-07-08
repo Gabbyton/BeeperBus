@@ -2,7 +2,7 @@ const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../core/db");
 
 class Vehicle extends Model {
-  static serialize(vehicles) {
+  static async serialize(vehicles, doSave = false) {
     const vehicleEntries = [];
     const badEntries = [];
 
@@ -18,8 +18,12 @@ class Vehicle extends Model {
           long: parseFloat(rawVehicle["location"]["lng"]),
           heading: parseInt(rawVehicle["heading"]),
         });
-
+ 
         vehicleEntries.push(vehicleEntry);
+        
+        if (doSave) {
+          vehicleEntry.save();
+        }
       } catch (e) {
         hasBadEntries = true;
         badEntries.push(rawVehicle);
