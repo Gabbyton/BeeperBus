@@ -23,4 +23,4 @@ EXPOSE 3000
 FROM base as prod
 run npm ci --production
 COPY . .
-CMD npm start
+CMD npm deploy
