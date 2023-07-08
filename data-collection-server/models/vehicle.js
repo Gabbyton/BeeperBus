@@ -6,8 +6,9 @@ class Vehicle extends Model {
     const vehicleEntries = [];
     const badEntries = [];
 
+    var hasBadEntries = false;
+
     vehicles.forEach((rawVehicle) => {
-      var hasBadEntries = false;
       try {
         const vehicleEntry = Vehicle.build({
           callName: rawVehicle["call_name"],
@@ -22,12 +23,12 @@ class Vehicle extends Model {
       } catch (e) {
         hasBadEntries = true;
         badEntries.push(rawVehicle);
-      } finally {
-        if (hasBadEntries) {
-          console.warn("the vehicle packet has bad entries.");
-        }
       }
     });
+
+    if (hasBadEntries) {
+      console.warn("vehicles have bad entries.");
+    }
 
     return [vehicleEntries, badEntries];
   }
