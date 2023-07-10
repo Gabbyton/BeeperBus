@@ -44,7 +44,7 @@ getVehicles = async function () {
 getArrivals = async function () {
   try {
     const response = await axios.request(arrivalOptions);
-    const rawArrivalsData = response.data["data"]["1199"];
+    const rawArrivalsData = response.data;
     return rawArrivalsData;
   } catch (error) {
     console.error(error);
