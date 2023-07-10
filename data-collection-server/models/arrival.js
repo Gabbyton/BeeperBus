@@ -1,7 +1,61 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../core/db");
 
-class Arrival extends Model {}
+class Arrival extends Model {
+  static serialize(rawArrivalsData, doSave = false) {
+    const arrivalEntries = [];
+    const badEntries = [];
+
+    const generatedOn = rawArrivalsData["generated_on"];
+    const stops = rawArrivalsData["data"];
+
+    stops.forEach(async function (stop) {
+      const agencyId = stop["agency_id"];
+      const stopId = stop["stop_id"];
+      const arrivals = stop["arrivals"];
+
+      arrivals.forEach(async function (arrival) {
+        const routeId = praseInt(arrival["route_id"]);
+        const vehicleId = parseInt(arrival["vehicle_id"]);
+        const arrivalAt = arrival["arrival_at"];
+        const type = arrival["type"];
+
+        try {
+          const arrivalEntry = Arrival.build({
+            generatedOn: generatedOn,
+            agencyId: agencyId,
+            stopId: stopId,
+            routeId: routeId,
+            vehicleId: vehicleId,
+            arrivalAt: arrivalAt,
+            type: type,      
+          });
+          arrivalEntries.push(arrivalEntry)
+          if (doSave) {
+            await arrivalEntry.save();
+          }
+        } catch (e) {
+          badEntries.push({
+            "generated_on": generatedOn,
+            "agency_id": agencyId,
+            "stop_id": stopId,
+            "route_id": arrival["route_id"],
+            "vehicle_id": arrival["vehicle_id"],
+            "arrival_at": arrivalAt,
+            "type": type
+          });
+        }
+      });
+
+    });
+
+    if (badEntries.length) {
+      console.warn("arrivals has bad entries");
+    }
+
+    return [arrivalEntries, badEntries];
+  }
+}
 
 Arrival.init(
   {
