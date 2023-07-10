@@ -21,6 +21,6 @@ COPY package-lock.json package-lock.json
 EXPOSE 3000
 
 FROM base as prod
-run npm ci --production
+RUN npm ci --production
 COPY . .
 CMD npm start
