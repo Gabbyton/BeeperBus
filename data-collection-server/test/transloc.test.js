@@ -17,6 +17,12 @@ describe("Transloc Open API", function () {
     assert.isArray(data);
   });
 
+  it("responds to arrival queries", async function () {
+    const data = await getArrivals()
+    assert.isDefined(data);
+    assert.isArray(data["data"])
+  });
+
   it("returns a serialized vehicle", async function () {
     const data = await getVehicles();
     const [vehicleEntries, badEntries] = Vehicle.serialize(data);
