@@ -4,7 +4,8 @@ const path = require("path");
 const cron = require("node-cron");
 
 const Vehicle = require("../models/vehicle");
-const { getVehicles } = require("./transloc");
+const Arrival = require("../models/arrival");
+const { getVehicles, getArrivals } = require("./transloc");
 
 // Create a log file for error logging
 const parentPath = path.resolve(__dirname, "..");
@@ -22,6 +23,15 @@ async function collectAndSaveData() {
   } catch (err) {
     errorLogStream.write(
       `[${new Date().toISOString()}]\tError collecting vehicle data:\n${err}\n`
+    );
+  }
+  try {
+    const rawArrivalsData = await getArrivals();
+    await Arrival.serialize(rawArrivalsData, (doSave = true));
+    saveLogStream.write(`[${new Date().toISOString()}]\tSaved arrivals data\n`);
+  } catch (err) {
+    errorLogStream.write(
+      `[${new Date().toISOString()}]\tError collecting arrivals data:\n${err}\n`
     );
   }
 }
