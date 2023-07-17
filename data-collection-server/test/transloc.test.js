@@ -5,6 +5,7 @@ const { describe, it } = require("mocha");
 const { getVehicles, getArrivals } = require("../core/transloc");
 
 const Vehicle = require("../models/vehicle");
+const Arrival = require("../models/arrival");
 const { scheduleCollect } = require("../core/collect");
 
 const assert = chai.assert;
