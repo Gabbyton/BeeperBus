@@ -90,13 +90,13 @@ describe("database: arrival", function () {
     return db.authenticate();
   });
 
+  const generatedOnValues = {
+    originalValues: ["original-value-1", "original-value-2"],
+    updateValue: "updated-value-1",
+  };
+
   it("syncs the table and creates a new arrival entry", async function () {
     await Arrival.sync({ force: true });
-
-    const generatedOnValues = {
-      originalValues: ["original-value-1", "original-value-2"],
-      updateValue: "updated-value-1",
-    };
 
     await Arrival.create({
       generatedOn: generatedOnValues.originalValues[0],
