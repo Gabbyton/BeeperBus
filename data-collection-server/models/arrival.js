@@ -15,7 +15,7 @@ class Arrival extends Model {
       const arrivals = stop["arrivals"];
 
       arrivals.forEach(async function (arrival) {
-        const routeId = praseInt(arrival["route_id"]);
+        const routeId = parseInt(arrival["route_id"]);
         const vehicleId = parseInt(arrival["vehicle_id"]);
         const arrivalAt = arrival["arrival_at"];
         const type = arrival["type"];
