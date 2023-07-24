@@ -141,3 +141,9 @@ data-collection-server/secrets/*
 
 # hide sh files
 *.sh
+
+# Data Analysis Directory
+# Track scripts
+!data-analysis/scripts/*.sh
+# Don't track data
+data-analysis/data/*
