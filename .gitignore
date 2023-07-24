@@ -2,6 +2,9 @@
 **/.*/**
 **/.*
 
+# Git Attributes
+!.gitattributes
+
 # Logs
 *.log
 npm-debug.log*
