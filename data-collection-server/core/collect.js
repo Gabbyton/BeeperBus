@@ -22,7 +22,7 @@ async function collectAndSaveData() {
     saveLogStream.write(`[${new Date().toISOString()}]\tSaved vehicle data\n`);
   } catch (err) {
     errorLogStream.write(
-      `[${new Date().toISOString()}]\tError collecting vehicle data:\n${err}\n`
+      `[${new Date().toISOString()}]\tError collecting vehicle data:\n${err}\n`,
     );
   }
   try {
@@ -31,7 +31,7 @@ async function collectAndSaveData() {
     saveLogStream.write(`[${new Date().toISOString()}]\tSaved arrivals data\n`);
   } catch (err) {
     errorLogStream.write(
-      `[${new Date().toISOString()}]\tError collecting arrivals data:\n${err}\n`
+      `[${new Date().toISOString()}]\tError collecting arrivals data:\n${err}\n`,
     );
   }
 }

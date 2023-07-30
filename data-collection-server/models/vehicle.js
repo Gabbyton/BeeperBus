@@ -31,6 +31,7 @@ class Vehicle extends Model {
     });
 
     if (hasBadEntries) {
+      // TODO: put in log instead
       console.warn("vehicles have bad entries.");
     }
 
@@ -51,7 +52,7 @@ Vehicle.init(
     sequelize,
     modelName: "vehicle",
     allowNull: false,
-  }
+  },
 );
 
 module.exports = Vehicle;
