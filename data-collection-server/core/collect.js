@@ -2,37 +2,29 @@ const fs = require("fs");
 const path = require("path");
 
 const cron = require("node-cron");
+const winston = require("winston");
 
 const Vehicle = require("../models/vehicle");
 const Arrival = require("../models/arrival");
 const { getVehicles, getArrivals } = require("./transloc");
 
-// Create a log file for error logging
-const parentPath = path.resolve(__dirname, "..");
-const errlogFilePath = path.join(parentPath, "logs", "app-error.log");
-const savelogFilePath = path.join(parentPath, "logs", "save-log.log");
-const errorLogStream = fs.createWriteStream(errlogFilePath, { flags: "a" });
-const saveLogStream = fs.createWriteStream(savelogFilePath, { flags: "a" });
+logger = winston.loggers.get("main");
 
 // Function to collect and save data
 async function collectAndSaveData() {
   try {
     const vehicleData = await getVehicles();
     await Vehicle.serialize(vehicleData, (doSave = true));
-    saveLogStream.write(`[${new Date().toISOString()}]\tSaved vehicle data\n`);
+    logger.info("Saved vehicle data")
   } catch (err) {
-    errorLogStream.write(
-      `[${new Date().toISOString()}]\tError collecting vehicle data:\n${err}\n`,
-    );
+    logger.error(`Error collecting vehicle data, ${err}`)
   }
   try {
     const rawArrivalsData = await getArrivals();
     await Arrival.serialize(rawArrivalsData, (doSave = true));
-    saveLogStream.write(`[${new Date().toISOString()}]\tSaved arrivals data\n`);
+    logger.info("Saved arrivals data")
   } catch (err) {
-    errorLogStream.write(
-      `[${new Date().toISOString()}]\tError collecting arrivals data:\n${err}\n`,
-    );
+    logger.error(`Error collecting arrivals data, ${err}`)
   }
 }
 
