@@ -1,5 +1,6 @@
 geopandas
 matplotlib
+notebook
 numpy
 pandas
 scipy
