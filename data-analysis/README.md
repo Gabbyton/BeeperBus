@@ -44,7 +44,25 @@ data-analysis
 
 ### Running Notebooks
 
-1. Make sure the virtual environment is activate (see above)
-1. `jupyter notebook`
+1. Update packages with `bash scripts/update.sh`
+1. Activate the virtual environment with `source .venv/bin/activate`.
+1. Start Jupyter Notebook with `jupyter notebook`.
 1. Navigate to the notebook to run in the browser tab that opens and run the
 notebook from there.
+
+## Development
+
+### Adding or Removing Dependencies
+
+Manage dependencies with the scripts in `scripts` and `pip`. If a new package is
+needed, add it to `requirements-dev.txt` and run
+`bash scripts/update-requirements.txt`. This script is used to reinstall the
+virtual environment using the list of explicit dependencies and update
+`requirements.txt` accordingly.
+
+### Updating Packages
+
+Simply run `bash scripts/update-requirements.sh` to reinstall packages from
+scratch. `pip` will automatically figures out the latest compatible versions to
+install. If a specific version is required, be sure to list that requirement in
+`requirements-dev.txt`.
