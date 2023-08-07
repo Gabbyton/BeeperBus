@@ -66,3 +66,20 @@ Simply run `bash scripts/update-requirements.sh` to reinstall packages from
 scratch. `pip` will automatically figures out the latest compatible versions to
 install. If a specific version is required, be sure to list that requirement in
 `requirements-dev.txt`.
+
+### Committing Changes
+
+Commit changes to notebook separately, and make sure that the clean filter is
+applied correctly by checking the diff after staging: `git diff --cached`. An
+error message will display at the add step if there was a problem with the add
+step. See below:
+
+```text
+jupyter nbconvert --ClearOutputPreprocessor.enabled=True --ClearMetadataPreprocessor.enabled=True --ClearMetadataPreprocessor.preserve_nb_metadata_mask kernelspec --ClearMetadataPreprocessor.preserve_nb_metadata_mask name --to=notebook --stdin --stdout --log-level=ERROR: jupyter: command not found
+error: external filter 'jupyter nbconvert --ClearOutputPreprocessor.enabled=True --ClearMetadataPreprocessor.enabled=True --ClearMetadataPreprocessor.preserve_nb_metadata_mask kernelspec --ClearMetadataPreprocessor.preserve_nb_metadata_mask name --to=notebook --stdin --stdout --log-level=ERROR' failed 127
+error: external filter 'jupyter nbconvert --ClearOutputPreprocessor.enabled=True --ClearMetadataPreprocessor.enabled=True --ClearMetadataPreprocessor.preserve_nb_metadata_mask kernelspec --ClearMetadataPreprocessor.preserve_nb_metadata_mask name --to=notebook --stdin --stdout --log-level=ERROR' failed
+```
+
+The error is likely to be due to the virtual environment not being activated, or
+the virtual environment not being set up correctly. Run `bash scripts/update.sh`
+and try again.
