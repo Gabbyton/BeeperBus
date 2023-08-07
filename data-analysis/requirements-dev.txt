@@ -1,3 +1,4 @@
+contextily
 geopandas
 matplotlib
 nbconvert
