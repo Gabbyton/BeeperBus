@@ -5,6 +5,7 @@ nbconvert
 notebook
 numpy
 pandas
+python-dotenv
 scipy
 seaborn
 tqdm
