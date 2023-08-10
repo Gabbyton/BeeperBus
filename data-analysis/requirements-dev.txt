@@ -1,5 +1,6 @@
 contextily
 geopandas
+geopy
 matplotlib
 nbconvert
 notebook
