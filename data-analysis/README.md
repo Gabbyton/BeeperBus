@@ -26,6 +26,11 @@ this folder) to a running notebook.
 
 1. Activate the virtual environment: `source .venv/bin/activate`.
 
+1. Add the `.env` file from Sharepoint to the `data-analysis` directory.
+
+    This file contains the environment variables needed to run the notebooks.
+    It is not included in the repository for security reasons.
+
 ### Data
 
 The download process will probably change with time, but for now it is accessed
