@@ -13,6 +13,14 @@ logger = winston.loggers.get("main");
 // Function to collect and save data
 async function collectAndSaveData() {
   try {
+    // make sure that the tables are present before collection
+    Vehicle.sync();
+    Arrival.sync();
+  } catch (e) {
+    logger.error(`Error collecting arrivals data, ${err}`);
+  }
+
+  try {
     const vehicleData = await getVehicles();
     await Vehicle.serialize(vehicleData, (doSave = true));
     logger.info("Saved vehicle data");
