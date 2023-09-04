@@ -10,7 +10,7 @@ class Arrival extends Model {
 
     routes.forEach(async function (route) {
       const stopId = route["RouteStopID"];
-      const stops = routes["Stops"];
+      const stops = route["Stops"];
 
       stops.forEach(async function (stop) {
         const routeId = parseInt(stop["RouteID"]);
@@ -47,13 +47,9 @@ class Arrival extends Model {
 
 Arrival.init(
   {
-    // generatedOn: DataTypes.STRING,
-    // agencyId: DataTypes.STRING,
     stopId: DataTypes.STRING,
     routeId: DataTypes.INTEGER,
-    // vehicleId: DataTypes.INTEGER,
     arrivalAt: DataTypes.STRING,
-    // type: DataTypes.STRING,
   },
   {
     sequelize,
