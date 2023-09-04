@@ -6,47 +6,44 @@ class Arrival extends Model {
     const arrivalEntries = [];
     const badEntries = [];
 
-    const generatedOn = rawArrivalsData["generated_on"];
-    const stops = rawArrivalsData["data"];
+    const routes = rawArrivalsData;
 
-    stops.forEach(async function (stop) {
-      const agencyId = stop["agency_id"];
-      const stopId = stop["stop_id"];
-      const arrivals = stop["arrivals"];
+    routes.forEach(async function (route) {
+      const stopId = route["RouteStopID"];
+      const stops = routes["Stops"];
 
-      arrivals.forEach(async function (arrival) {
-        const routeId = parseInt(arrival["route_id"]);
-        const vehicleId = parseInt(arrival["vehicle_id"]);
-        const arrivalAt = arrival["arrival_at"];
-        const type = arrival["type"];
+      stops.forEach(async function (stop) {
+        const routeId = parseInt(stop["RouteID"]);
+        // const vehicleId = parseInt(stop[""]);
+        const arrivalAt = stop["SecondsToNextStop"]; // arrivalAt now in seconds to current stop
+        // const type = stop["type"];
 
         try {
           const arrivalEntry = Arrival.build({
-            generatedOn: generatedOn,
-            agencyId: agencyId,
+            // generatedOn: generatedOn, // TODO: replace with timestamp of record
+            // agencyId: agencyId,
             stopId: stopId,
             routeId: routeId,
-            vehicleId: vehicleId,
+            // vehicleId: vehicleId,
             arrivalAt: arrivalAt,
-            type: type,      
+            // type: type,
           });
-          arrivalEntries.push(arrivalEntry)
+          arrivalEntries.push(arrivalEntry);
           if (doSave) {
             await arrivalEntry.save();
           }
         } catch (e) {
           badEntries.push({
-            "generated_on": generatedOn,
-            "agency_id": agencyId,
-            "stop_id": stopId,
-            "route_id": arrival["route_id"],
-            "vehicle_id": arrival["vehicle_id"],
-            "arrival_at": arrivalAt,
-            "type": type
+            // generated_on: generatedOn,
+            // agency_id: agencyId,
+            stopId: stopId,
+            routeId: routeId,
+            // vehicle_id: stop["vehicle_id"],
+            arrivalAt: arrivalAt,
+            type: type,
           });
         }
       });
-
     });
 
     if (badEntries.length) {
@@ -59,19 +56,19 @@ class Arrival extends Model {
 
 Arrival.init(
   {
-    generatedOn: DataTypes.STRING,
-    agencyId: DataTypes.STRING,
+    // generatedOn: DataTypes.STRING,
+    // agencyId: DataTypes.STRING,
     stopId: DataTypes.STRING,
     routeId: DataTypes.INTEGER,
-    vehicleId: DataTypes.INTEGER,
+    // vehicleId: DataTypes.INTEGER,
     arrivalAt: DataTypes.STRING,
-    type: DataTypes.STRING,
+    // type: DataTypes.STRING,
   },
   {
     sequelize,
     modelName: "arrival",
     allowNull: false,
-  }
+  },
 );
 
 module.exports = Arrival;
