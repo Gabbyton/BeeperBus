@@ -17,7 +17,7 @@ async function collectAndSaveData() {
     Vehicle.sync();
     Arrival.sync();
   } catch (e) {
-    logger.error(`Error collecting arrivals data, ${err}`);
+    logger.error(`Error syncing Vehicle and Arrival tables, ${err}`);
   }
 
   try {

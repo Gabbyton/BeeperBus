@@ -14,19 +14,13 @@ class Arrival extends Model {
 
       stops.forEach(async function (stop) {
         const routeId = parseInt(stop["RouteID"]);
-        // const vehicleId = parseInt(stop[""]);
         const arrivalAt = stop["SecondsToNextStop"]; // arrivalAt now in seconds to current stop
-        // const type = stop["type"];
 
         try {
           const arrivalEntry = Arrival.build({
-            // generatedOn: generatedOn, // TODO: replace with timestamp of record
-            // agencyId: agencyId,
             stopId: stopId,
             routeId: routeId,
-            // vehicleId: vehicleId,
             arrivalAt: arrivalAt,
-            // type: type,
           });
           arrivalEntries.push(arrivalEntry);
           if (doSave) {
@@ -34,11 +28,8 @@ class Arrival extends Model {
           }
         } catch (e) {
           badEntries.push({
-            // generated_on: generatedOn,
-            // agency_id: agencyId,
             stopId: stopId,
             routeId: routeId,
-            // vehicle_id: stop["vehicle_id"],
             arrivalAt: arrivalAt,
             type: type,
           });
