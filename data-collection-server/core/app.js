@@ -3,23 +3,36 @@ const fs = require("fs");
 
 const winston = require('winston');
 const { format } = winston;
-const { combine, timestamp, label, json } = format;
+const { combine, timestamp, label, json, colorize, splat } = format;
 
 const express = require("express");
 const app = express();
 
+mainLabel = label({ label: 'main' })
+const consoleFormat = format.printf(({ level, message, label, timestamp }) => {
+  return `${timestamp} [${label}] ${level}: ${message}`;
+});
 winston.loggers.add('main', {
   format: combine(
-    label({ label: 'main' }),
+    mainLabel,
     timestamp(),
     json()
   ),
   transports: [
-    new winston.transports.Console({ level: 'silly'}),
+    new winston.transports.Console({
+      level: 'silly',
+      format: combine(
+        colorize({all:true}),
+        mainLabel,
+        timestamp(),
+        splat(),
+        consoleFormat
+      )
+    }),
     new winston.transports.File({ filename: 'logs/combined.log', level: 'info' }),
     new winston.transports.File({ filename: 'logs/errors.log', level: 'error' })
   ]
-})
+});
 const logger = winston.loggers.get('main');
 
 // Middleware for logging errors
