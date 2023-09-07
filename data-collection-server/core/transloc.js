@@ -1,9 +1,12 @@
 const axios = require("axios");
 
 const config = require("../secrets/config");
+const winston = require("winston");
 
 const env = process.env.NODE_ENV || "development";
 const apiConfig = config[env];
+
+logger = winston.loggers.get("main");
 
 const vehicleOptions = {
   method: "GET",
@@ -28,7 +31,7 @@ getVehicles = async function () {
     rawVehicleData = response.data;
     return rawVehicleData;
   } catch (error) {
-    console.error(error);
+    logger.error(error.message);
   }
 };
 
@@ -38,7 +41,7 @@ getArrivals = async function () {
     const rawArrivalsData = response.data;
     return rawArrivalsData;
   } catch (error) {
-    console.error(error);
+    logger.error(error.message);
   }
 };
 
