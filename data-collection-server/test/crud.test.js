@@ -59,7 +59,7 @@ describe("database: vehicle", function () {
         where: {
           callName: "abc456",
         },
-      }
+      },
     );
     const entries = await Vehicle.findAll({
       attributes: ["callName"],
@@ -90,78 +90,68 @@ describe("database: arrival", function () {
     return db.authenticate();
   });
 
-  const generatedOnValues = {
-    originalValues: ["original-value-1", "original-value-2"],
-    updateValue: "updated-value-1",
+  const stopIdValues = {
+    originalValues: ["def456", "ghi789"],
+    updateValue: "jkl123",
   };
 
   it("syncs the table and creates a new arrival entry", async function () {
     await Arrival.sync({ force: true });
 
     await Arrival.create({
-      generatedOn: generatedOnValues.originalValues[0],
-      agencyId: "def456",
-      stopId: "xyz789",
+      stopId: "def456",
       routeId: 4567,
-      vehicleId: 1234,
       arrivalAt: "tuv123",
-      type: "typeA",
     });
 
     await Arrival.create({
-      generatedOn: generatedOnValues.originalValues[1],
-      agencyId: "def456",
-      stopId: "xyz789",
+      stopId: "ghi789",
       routeId: 4567,
-      vehicleId: 1234,
       arrivalAt: "tuv123",
-      type: "typeA",
     });
   });
 
   it("retrieves an entry from the database", async function () {
     const entries = await Arrival.findAll({
-      attributes: ["generatedOn"],
+      attributes: ["stopId"],
     });
 
-    const retrievedGeneratedOnValues = [];
+    const retrievedStopIdValues = [];
     entries.forEach(function (entry) {
-      retrievedGeneratedOnValues.push(entry.generatedOn);
+      retrievedStopIdValues.push(entry.stopId);
     });
 
-    expect(retrievedGeneratedOnValues).to.have.members(
-      generatedOnValues.originalValues
-    );
+    expect(retrievedStopIdValues).to.have.members(stopIdValues.originalValues);
   });
 
   it("can update an item", async function () {
     await Arrival.update(
-      { generatedOn: generatedOnValues.updateValue },
+      { stopId: stopIdValues.updateValue },
       {
         where: {
-          generatedOn: generatedOnValues.originalValues[1],
+          stopId: stopIdValues.originalValues[1],
         },
-      }
+      },
     );
     const entries = await Arrival.findAll({
-      attributes: ["generatedOn"],
+      attributes: ["stopId"],
     });
 
-    const retrievedGeneratedOnValues = [];
+    const retrievedStopIdValues = [];
     entries.forEach(function (entry) {
-      retrievedGeneratedOnValues.push(entry.generatedOn);
+      retrievedStopIdValues.push(entry.stopId);
     });
 
-    expect(retrievedGeneratedOnValues).to.have.members([
-      generatedOnValues.originalValues[0],
-      generatedOnValues.updateValue,
+    expect(retrievedStopIdValues).to.have.members([
+      stopIdValues.originalValues[0],
+      stopIdValues.updateValue,
     ]);
   });
 
   it("can delete an item", async function () {
     await Arrival.destroy({
       where: {
-        generatedOn: generatedOnValues.updateValue,
+        stopId: stopIdValues.updateValue,
       },
     });
 

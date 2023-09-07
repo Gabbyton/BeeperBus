@@ -6,7 +6,6 @@ const { getVehicles, getArrivals } = require("../core/transloc");
 
 const Vehicle = require("../models/vehicle");
 const Arrival = require("../models/arrival");
-const { scheduleCollect } = require("../core/collect");
 
 const assert = chai.assert;
 chai.use(chaiHttp);
@@ -21,10 +20,10 @@ describe("Transloc Open API", function () {
   it("returns a serialized vehicle", async function () {
     const data = await getVehicles();
     const [vehicleEntries, badEntries] = Vehicle.serialize(data);
-    
+
     assert.isArray(vehicleEntries);
     assert.isArray(badEntries);
-    
+
     if (vehicleEntries.length > 0) {
       vehicleEntries.forEach(function (entry) {
         assert.isObject(entry);
@@ -43,7 +42,7 @@ describe("Transloc Open API", function () {
   it("responds to arrival queries", async function () {
     const data = await getArrivals();
     assert.isDefined(data);
-    assert.isArray(data["data"]);
+    assert.isArray(data);
   });
 
   it("returns a serialized arrival", async function () {
@@ -53,9 +52,9 @@ describe("Transloc Open API", function () {
     assert.isArray(arrivalEntries);
     assert.isArray(badEntries);
 
-    if (arrivalEntries.length) {
+    if (arrivalEntries.length > 0) {
       arrivalEntries.forEach(function (arrival) {
-        assert.isObject(arrival)
+        assert.isObject(arrival);
       });
     } else {
       console.warn("serialization function did not return arrival objects");

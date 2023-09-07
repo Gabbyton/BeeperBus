@@ -13,24 +13,32 @@ logger = winston.loggers.get("main");
 // Function to collect and save data
 async function collectAndSaveData() {
   try {
+    // make sure that the tables are present before collection
+    Vehicle.sync();
+    Arrival.sync();
+  } catch (e) {
+    logger.error(`Error syncing Vehicle and Arrival tables, ${err}`);
+  }
+
+  try {
     const vehicleData = await getVehicles();
     await Vehicle.serialize(vehicleData, (doSave = true));
-    logger.info("Saved vehicle data")
+    logger.info("Saved vehicle data");
   } catch (err) {
-    logger.error(`Error collecting vehicle data, ${err}`)
+    logger.error(`Error collecting vehicle data, ${err}`);
   }
   try {
     const rawArrivalsData = await getArrivals();
     await Arrival.serialize(rawArrivalsData, (doSave = true));
-    logger.info("Saved arrivals data")
+    logger.info("Saved arrivals data");
   } catch (err) {
-    logger.error(`Error collecting arrivals data, ${err}`)
+    logger.error(`Error collecting arrivals data, ${err}`);
   }
 }
 
 scheduleCollect = function () {
-  // Schedule the data collection using cron (every second
-  const cronJob = cron.schedule("* * * * * *", collectAndSaveData);
+  // Schedule the data collection using cron (every 7 seconds)
+  const cronJob = cron.schedule("*/7 * * * * *", collectAndSaveData);
   return cronJob;
 };
 

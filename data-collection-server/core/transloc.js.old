@@ -7,25 +7,35 @@ const apiConfig = config[env];
 
 const vehicleOptions = {
   method: "GET",
-  url: "https://casewestern.transloc.com/Services/JSONPRelay.svc/GetMapVehiclePoints",
+  // url: "https://transloc-api-1-2.p.rapidapi.com/vehicles.json",
+  url: "https://casewestern.transloc.com/Services/JSONPRelay.svc/GetMapVehiclePoints?apiKey=",
   params: {
-    apiKey: "8882812681",
+    agencies: "1199",
+    callback: "call",
+  },
+  headers: {
+    "X-RapidAPI-Key": apiConfig.apikey,
+    "X-RapidAPI-Host": apiConfig.apihost,
   },
 };
 
 const arrivalOptions = {
   method: "GET",
-  url: "https://casewestern.transloc.com/Services/JSONPRelay.svc/GetRoutesForMapWithScheduleWithEncodedLine",
+  url: "https://transloc-api-1-2.p.rapidapi.com/arrival-estimates.json",
   params: {
-    apiKey: "8882812681",
-    isDispatch: false,
+    agencies: "1199",
+    callback: "call",
+  },
+  headers: {
+    "X-RapidAPI-Key": apiConfig.apikey,
+    "X-RapidAPI-Host": apiConfig.apihost,
   },
 };
 
 getVehicles = async function () {
   try {
     const response = await axios.request(vehicleOptions);
-    rawVehicleData = response.data;
+    rawVehicleData = response.data["data"]["1199"];
     return rawVehicleData;
   } catch (error) {
     console.error(error);

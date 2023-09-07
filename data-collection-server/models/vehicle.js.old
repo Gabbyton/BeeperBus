@@ -11,12 +11,12 @@ class Vehicle extends Model {
     vehicles.forEach(async function (rawVehicle) {
       try {
         const vehicleEntry = Vehicle.build({
-          callName: rawVehicle["Name"],
-          vehicleId: parseInt(rawVehicle["VehicleID"]),
-          routeId: parseInt(rawVehicle["RouteID"]),
-          lat: parseFloat(rawVehicle["Latitude"]),
-          long: parseFloat(rawVehicle["Longitude"]),
-          heading: parseInt(rawVehicle["Heading"]),
+          callName: rawVehicle["call_name"],
+          vehicleId: parseInt(rawVehicle["vehicle_id"]),
+          routeId: parseInt(rawVehicle["route_id"]),
+          lat: parseFloat(rawVehicle["location"]["lat"]),
+          long: parseFloat(rawVehicle["location"]["lng"]),
+          heading: parseInt(rawVehicle["heading"]),
         });
 
         vehicleEntries.push(vehicleEntry);
