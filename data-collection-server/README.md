@@ -25,6 +25,9 @@ Weekly collection is done with the following steps:
 
 1. Access the data collection EC2 server using credentials provided in the
 Project SharePoint.
+   1. Go to sharepoint > keys > spreadsheet with credentials
+   1. Open EC2 > Instances > data-collection-server > Actions > connect to
+   instance
 1. In the server, run the following command:
 `docker exec -it data-collection-server-db-1 sh`. A convenient shorthand alias
 is also provided. Alternatively, the `cdb` command can be used.
