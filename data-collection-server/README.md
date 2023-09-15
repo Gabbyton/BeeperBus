@@ -36,19 +36,19 @@ is also provided. Alternatively, the `cdb` command can be used.
 `\c beeper beeper`. Then run the command `SELECT COUNT(*) FROM <table>;`
 replacing table with either `vehicles` or `arrivals`.
 1. To copy data to CSV, run:
-`COPY <table> to '/tmp/<file_name>.csv' WITH(FORMAT CSV, HEADER);`. Note the
+`\copy <table> from '/tmp/<file_name>.csv' csv header;`. Note the
 results will be saved in the `/tmp` folder.
 1. Quit `psql` with ` \q`. Quit the docker container terminal with `exit`.
 1. To copy the data into the EC2 instance from the DB container, use the
 following command:
-`docker cp data-collection-server-db-1:/tmp/<file_name>.csv /home/public`. The
+`docker cp data-collection-server-db-1:/tmp/<file_name>.csv /home/ec2-user/public`. The
 data must be moved to a `public` folder assigned public access (777) to enable
 copying from outside connections.
 1. Quit the EC2 instance with `exit`.
 1. On a local machine, copy the file from the EC2 instance
 
 ```bash
-scp -i <path_to_key> <ec2_public_dns>:/home/public/<file_name>/csv <destination_in_local_machine>
+scp -i <path_to_key> <ec2_public_dns>:/home/public/<file_name>.csv <destination_in_local_machine>
 ```
 
 The key and the DNS are both provided in the secure SharePoint.
