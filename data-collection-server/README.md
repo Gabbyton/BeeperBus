@@ -36,7 +36,7 @@ is also provided. Alternatively, the `cdb` command can be used.
 `\c beeper beeper`. Then run the command `SELECT COUNT(*) FROM <table>;`
 replacing table with either `vehicles` or `arrivals`.
 1. To copy data to CSV, run:
-`\copy <table> from '/tmp/<file_name>.csv' csv header;`. Note the
+`\copy <table> to '/tmp/<file_name>.csv' csv header;`. Note the
 results will be saved in the `/tmp` folder.
 1. Quit `psql` with ` \q`. Quit the docker container terminal with `exit`.
 1. To copy the data into the EC2 instance from the DB container, use the
