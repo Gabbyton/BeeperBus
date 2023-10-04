@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "aws-sdk": "^2.1469.0",
     "axios": "^1.4.0",
     "chai": "^4.3.7",
     "chai-http": "^4.4.0",
